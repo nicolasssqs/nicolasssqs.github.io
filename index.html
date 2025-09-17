@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Compagny OU — Kuratoorne jaemüük & kataloog</title>
+  <meta name="description" content="Spordi-, hobi- ja muusikakaubad, niširaamatud ja komplektid. Digikataloog, postimüük ja click-&-collect Tallinnas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0d0b; --bg2:#0e1310; --ink:#eef6f0; --muted:#9fb7a8;
+      --accent:#29d47a; --accent-2:#0ea565; --card:#101612; --stroke:#1c241f;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --grad: radial-gradient(1200px 600px at 10% -10%, #103d27 0%, transparent 60%),
+              radial-gradient(900px 520px at 100% 0%, #0b2b1d 0%, transparent 60%),
+              linear-gradient(180deg,#0a0d0b 0%, #0f1511 60%, #0a0d0b 100%);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    a{color:var(--ink);text-decoration:none}
+    img{display:block;max-width:100%;height:auto}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+    header{position:sticky;top:0;z-index:20;background:rgba(10,13,11,.7);backdrop-filter:saturate(150%) blur(6px);border-bottom:1px solid #0e1b15}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-family:"Playfair Display",serif;font-size:24px;letter-spacing:.2px}
+    .nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:linear-gradient(180deg,#2ce487,#0ea565);color:#04120a;font-weight:700}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero{background:var(--grad)}
+    .hero-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;padding:72px 0}
+    .kicker{color:var(--muted);letter-spacing:.22em;text-transform:uppercase;font-size:12px}
+    .title{font-family:"Playfair Display",serif;font-size:56px;line-height:1.05;margin:8px 0 12px}
+    .subtitle{color:#cfe3d7;max-width:720px}
+    .stats{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px}
+    .pill{border:1px solid #214332;border-radius:999px;padding:8px 14px;color:#cbe7d8;background:rgba(18,34,27,.55)}
+    .hero-img{border-radius:26px;border:1px solid var(--stroke);overflow:hidden;box-shadow:var(--shadow)}
+    .hero-img img{object-fit:cover;height:520px;filter:saturate(88%) contrast(102%)}
+
+    section{padding:92px 0;background:var(--bg)}
+    section.alt{background:var(--bg2)}
+    .section-sub{color:var(--muted);letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
+    h2{font-family:"Playfair Display",serif;font-size:36px;line-height:1.2;margin:0 0 10px}
+    .lead{color:#d8eee3;max-width:780px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:16px}
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{color:#cfe3d7}
+    .card.media{padding:0;overflow:hidden}
+    .media-body{padding:18px}
+    .media img{height:160px;width:100%;object-fit:cover;filter:grayscale(8%) saturate(105%)}
+
+    .process{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr;gap:10px;align-items:center;margin-top:24px}
+    .step{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:18px;position:relative}
+    .step .num{position:absolute;left:12px;top:-14px;background:#092116;border:1px solid #155a3b;border-radius:999px;padding:6px 10px;font-weight:700;color:#9cf0c5}
+    .arrow{display:grid;place-items:center;color:#65e6a7;font-size:22px}
+
+    /* Contact */
+    .contact{border-top:1px solid var(--stroke)}
+    .contact form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    label{font-size:12px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #23392d;background:#0c140f;color:#e8fff2}
+    textarea{min-height:120px;grid-column:1/-1;resize:vertical}
+    .actions{display:flex;gap:12px;align-items:center}
+
+    /* Address block so it never “rides” inside the form */
+    .contact-info{margin-top:28px;padding-top:12px;border-top:1px solid var(--stroke)}
+    .contact-info p{margin:0;line-height:1.7}
+    .contact-info a{color:#9cf0c5;text-decoration:none;border-bottom:1px dashed #1f6e47}
+    .contact-info a:hover{color:#2fe88b}
+    @media (max-width:560px){ .contact-info a{overflow-wrap:anywhere;word-break:break-word;} }
+
+    footer{padding:26px 0;color:#8fb9a5;border-top:1px solid var(--stroke)}
+
+    @media (max-width:1024px){
+      .hero-wrap,.grid-2{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .process{grid-template-columns:1fr;gap:14px}
+      .arrow{display:none}
+      .title{font-size:44px}
+      .hero-img img{height:380px}
+      .contact form{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <div class="brand">Business Compagny</div>
+      <ul>
+        <li><a href="#meist">Meist</a></li>
+        <li><a href="#teenused">Teenused</a></li>
+        <li><a href="#vaartus">Väärtus</a></li>
+        <li><a href="#protsess">Protsess</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a class="btn" href="#kontakt">Küsi pakkumist</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="kodu" aria-label="Kangelassektsioon">
+    <div class="container hero-wrap">
+      <div>
+        <div class="kicker">Mitmekanaliline jaemüük</div>
+        <h1 class="title">Kuratoorne valik. Roheline mõtlemine.</h1>
+        <p class="subtitle">
+          Ühendame spordi-, hobi- ja muusikakaubad ning niširaamatud üheks selgeks kogemuseks.
+          Digikataloog, postimüük ja click-&-collect Tallinnas — komplektid, mis hoiavad aega ja raha.
+        </p>
+        <div class="stats">
+          <span class="pill">24 h komplekteerimine</span>
+          <span class="pill">Mikrobrändid Baltikumist</span>
+          <span class="pill">Komplektid eesmärgiga</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=1800&auto=format&fit=crop" alt="Must-roheline kompositsioon — jaemüügi vitriin">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="meist" class="alt">
+    <div class="container grid-2">
+      <div>
+        <div class="section-sub">Kes me oleme</div>
+        <h2>Jaemüüja, kes müüb lahendusi, mitte ainult tooteid.</h2>
+        <p class="lead">
+          Business Compagny OU on Tallinnas tegutsev boutique-jaemüüja, kes koondab spordivahendid, hobitarbed,
+          muusikainstrumendid ja niširaamatud. Me ei kasvata riiulipikkust, vaid valime lühikeste seeriatega
+          tooted, mis päriselt teenivad eesmärki. Testime varustust oma ministuudios ning küsime tagasisidet
+          treeneritelt ja muusikutelt. Tellimine käib e-poe, digikataloogi või e-kirja teel; kohapeal pakume
+          click-&-collect’i, pillihäälestust ja jooksujalanõude sobivuskontrolli.
+        </p>
+      </div>
+      <div class="card media">
+        <img class="media" src="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=1600&auto=format&fit=crop" alt="Must-roheline interjöör ja tooteriiul">
+        <div class="media-body">
+          <strong style="color:#9cf0c5">Fookus: päris kasutus</strong>
+          <p style="margin:.4rem 0 0">Praktilised testid + kogukonna tagasiside = vähem pettumusi ja tagastusi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="teenused">
+    <div class="container">
+      <div class="section-sub">Mida teeme sinu eest</div>
+      <h2>Teenused, mis hoiavad sinu aega ja eelarvet.</h2>
+
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=1400&auto=format&fit=crop" alt="Spordi- ja hobikomplekt" style="border-radius:12px;margin:-4px 0 10px;filter:grayscale(12%) saturate(110%)">
+          <h3>Nutikas tootevalik & komplektid</h3>
+          <p>Kolm filtrit: kvaliteet, ühilduvus ja hooldatavus. Paneme kokku valmiskomplekte (nt “trail-runner”, “lauamängu õhtu”, “kodune stuudio”) koos juhiste ja hoolduskalendriga.</p>
+        </article>
+
+        <article class="card">
+         <img src="main1.jpg" alt="Kataloog ja logistika" style="border-radius:12px;margin:-4px 0 10px;filter:grayscale(10%) saturate(108%)">
+          <h3>Digikataloog & postimüük</h3>
+          <p>Kvartaalne e-kataloog tootekoodidega. Lihtne tellida e-posti või vormi kaudu. Tarne pakiautomaati/kulleriga ja läbipaistev kogukulu enne kinnitamist.</p>
+        </article>
+
+        <article class="card">
+         <img src="main2.jpg" alt="Kataloog ja logistika" style="border-radius:12px;margin:-4px 0 10px;filter:grayscale(10%) saturate(108%)">
+          <h3>Hooldus, häälestus & järelabi</h3>
+          <p>Keelpillide häälestus, vinüülihooldus, lauamängude varuosad ja jooksujalatsite sobivuskontroll. Vajadusel kohandame komplekti 14 päeva jooksul.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section id="vaartus" class="alt">
+    <div class="container">
+      <div class="section-sub">Miks valida just meid</div>
+      <h2>Selge väärtus — vähem müra, rohkem kasutust.</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Kuratoorne, mitte üleriiul</h3>
+          <p>Iga ese on kas testitud või kogukonna poolt kinnitatud. Ostad vähem, kuid paremini sobivat — väiksem kogukulu.</p>
+        </article>
+        <article class="card">
+          <h3>Mikrobrändide eelistus</h3>
+          <p>Toome lühikesed seeriad Baltikumist ja Põhjamaadest. Tulemuseks on ainulaadsed leiud ja aus tarneahel.</p>
+        </article>
+        <article class="card">
+          <h3>Läbipaistev kogukulu</h3>
+          <p>Komplektidel on tarne- ja hoolduskulud kohe näha. Ei mingeid üllatusi pärast kinnitamist.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="protsess">
+    <div class="container">
+      <div class="section-sub">Kuidas see töötab</div>
+      <h2>Kolm sammu sinu eesmärgini.</h2>
+      <div class="process" role="list">
+        <div class="step" role="listitem">
+          <div class="num">1</div>
+          <h3>Kaardista huvi</h3>
+          <p>Vali teema (sport, hobi, muusika, raamatud) ja kirjelda eesmärk. Anname 2–3 täpset soovitust koos eelarvevahemikuga.</p>
+        </div>
+        <div class="arrow">➔</div>
+        <div class="step" role="listitem">
+          <div class="num">2</div>
+          <h3>Pane kokku & kinnita</h3>
+          <p>Vali suurused ja lisad; kontrollime ühilduvuse (pill + keeled, mäng + kaitsmed, jooks + hooldus). Kogukulu nähtav enne kinnitamist.</p>
+        </div>
+        <div class="arrow">➔</div>
+        <div class="step" role="listitem">
+          <div class="num">3</div>
+          <h3>Tarnime & hooldame</h3>
+          <p>Komplekteerime 24 h jooksul. Kaasas juhendid ja hooldusmeeldetuletus; vajadusel kohandame detailid 14 päeva sees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (fixed) -->
+  <section id="kontakt" class="contact alt">
+    <div class="container">
+      <div class="section-sub">Võta ühendust</div>
+      <h2>Räägi, mida vajad — paneme komplekti sinu eesmärgi järgi.</h2>
+      <p class="lead">Vali sobiv teema või kirjuta oma sõnum — vastame kiiresti.</p>
+
+      <!-- форма -->
+      <form id="contactForm" novalidate>
+        <div>
+          <label for="name">Teie nimi</label>
+          <input id="name" name="name" type="text" placeholder="nt. Mari K." required>
+        </div>
+        <div>
+          <label for="email">E-post</label>
+          <input id="email" name="email" type="email" placeholder="nimi@post.ee" required>
+        </div>
+
+        <div>
+          <label for="topic">Teema</label>
+          <select id="topic" name="topic" required>
+            <option value="" disabled selected>Vali teema...</option>
+            <option>Spordikomplekt (algajale või edasijõudnule)</option>
+            <option>Muusikainstrumentide lisatarvikud</option>
+            <option>Kingikomplekt eelarvega kuni 120 €</option>
+            <option>Raamatud ja õppematerjalid</option>
+            <option>Click-&-Collect kättesaadavus</option>
+            <option>Toote hooldus või järelteenus</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="subject">Täpsustav teema</label>
+          <input id="subject" name="subject" type="text" placeholder="nt. Lauamängu õhtu komplekt">
+        </div>
+
+        <label for="message">Sõnum</label>
+        <textarea id="message" name="message" placeholder="Kirjeldage oma soovi, suurusi ja tähtaega."></textarea>
+
+        <div class="actions">
+          <button class="btn" type="submit">Saada päring</button>
+        </div>
+        <p id="formMessage" style="margin-top:10px;color:#29d47a;font-weight:600;display:none;">
+          Teie sõnum on edukalt saadetud!
+        </p>
+      </form>
+
+      <!-- адрес/почта — это ВНЕ формы -->
+      <div class="contact-info">
+        <div class="section-sub">Aadress & e-post</div>
+        <p>
+          F. R. Kreutzwaldi tn 3-42, 10120 Tallinn<br>
+          <a href="mailto:nicolas@businesscompagny.org">nicolas@businesscompagny.org</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>© 2025 Business Compagny OU. Kõik õigused kaitstud.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Сообщение об успешной отправке без перезагрузки
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const msg = document.getElementById("formMessage");
+      msg.style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
